@@ -1,42 +1,57 @@
 function init() {
-    
-const theGrid=document.querySelector(".grid-screen")
-console.log(theGrid)
-const width=20
-const numberCells=width*(width)-40
-console.log("the number of cells:",numberCells)
-const cellsArray=[]
-console.log("my array with all divs:",cellsArray)
 
-const spaceshipClass='spaceShip'
-const shipStartPosition=0
-console.log("ship starting position cell: ",shipStartPosition)
+  const theGrid = document.querySelector(".grid-screen")
+  console.log(theGrid)
+  const width = 20
+  const numberCells = width * (width) - 39
+  console.log("the number of cells:", numberCells)
+  const cellsArray = []
+  console.log("my array with all divs:", cellsArray)
+
+  const spaceshipClass = 'spaceShip'
+  const shipStartPosition = 1
+  let shipCurrentPosition = 1
+
+  console.log("ship starting position cell: ", shipStartPosition)
+  console.log("ship current position cell: ", shipCurrentPosition)
 
 
 
 
-//The Grid
-function createGrid(){
-  for (let i=0; i<numberCells; i++){
-    const cell= document.createElement("div")
-    cell.innerText = i
-    theGrid.appendChild(cell)
-    cellsArray.push(cell)
+  //The Grid
+  function createGrid() {
+    for (let i = 1; i < numberCells; i++) {
+      const cell = document.createElement("div")
+      cell.innerText = i
+      theGrid.appendChild(cell)
+      cellsArray.push(cell)
+    }
+    addSpaceShip(shipStartPosition)
   }
-  addSpaceShip(shipStartPosition)
+
+  //Add the ship to the grid
+
+  function addSpaceShip(position) {
+    console.log('position of the spaceship :', position)
+    cellsArray[position].classList.add(spaceshipClass)
+  }
+
+  //remoce spaship from the grid
+  function removeSpaceShip(position){
+    console.log("remove works")
+    cellsArray[position].classList.remove(spaceshipClass)
+  }
+
+  //movement logic 
+  function handleKeyUp(event) {
+    const key = event.keyCode
+    console.log(key)
+    removeSpaceShip(shipCurrentPosition)
+  }
+
+
+  document.addEventListener('keyup', handleKeyUp)
+  createGrid()
+
 }
-
-//Add the ship to the grid
-
-function addSpaceShip(position){
-  console.log('position of the spaceship :', position)
-  cellsArray[position].classList.add(spaceshipClass)
-}
-
-
-
-
-createGrid()
-
-}
-  window.addEventListener('DOMContentLoaded', init)
+window.addEventListener('DOMContentLoaded', init)

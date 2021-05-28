@@ -6,7 +6,7 @@ body{
     height: 100vh;
     display: flex;
     justify-content: space-around;
-    align-items: center;  
+    align-items: center;
 }
 
 .control-screen{
@@ -18,26 +18,27 @@ body{
     justify-content: center;
     flex-direction: column;
     height: 95%;
-    width: 20%;
+    width: 10%;
+    min-width: 200px;
+    /* width: 200px; */
 }
 
 .grid-screen{
     align-items: center;
-    width: 900px;
+    /* width: 900px; */
     width: 70%;
     height: 95%;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     display: flex;
     flex-wrap: wrap;
-    
-  
+    min-width: 800px;
 }
 
  .grid-screen div {
-    border: 1px solid black;
+    border: 1px solid lightblue;
     flex-grow: 1;
     height: 5%;
-    width: 5%;
+    width: 4.7%;
   }
 
  .tv{

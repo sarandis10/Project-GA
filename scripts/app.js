@@ -9,8 +9,8 @@ function init() {
   console.log("my array with all divs:", cellsArray)
 
   const spaceshipClass = 'spaceShip'
-  const shipStartPosition = 1
-  let shipCurrentPosition = 1
+  const shipStartPosition = numberCells-11
+  let shipCurrentPosition = numberCells-11
 
   console.log("ship starting position cell: ", shipStartPosition)
   console.log("ship current position cell: ", shipCurrentPosition)
@@ -60,11 +60,8 @@ function init() {
     if (key==40 && shipCurrentPosition<341){
       shipCurrentPosition=shipCurrentPosition+width
     }
-
     addSpaceShip(shipCurrentPosition)
   }
-
-
   document.addEventListener('keyup', handleKeyUp)
   createGrid()
 

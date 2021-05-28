@@ -22,10 +22,23 @@ body{
 }
 
 .grid-screen{
+    align-items: center;
+    width: 900px;
     width: 70%;
     height: 95%;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
- }
+    display: flex;
+    flex-wrap: wrap;
+    
+  
+}
+
+ .grid-screen div {
+    border: 1px solid black;
+    flex-grow: 1;
+    height: 5%;
+    width: 5%;
+  }
 
  .tv{
      flex:1;

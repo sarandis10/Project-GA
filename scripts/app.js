@@ -1,4 +1,17 @@
 function init() {
+  let score=0
+  // const firstName = (window.prompt("Hello There what is your name?"))
+  // let lifes=Number(window.prompt(`hello ${firstName} how many lifes do you want to begin with?`))
+  
+  // if (lifes>5){
+  //   lifes=Number(window.prompt(`${firstName} dont you think you asking for too many lifes choose again but less that 5 this time!?`))
+  // }
+
+  // if (lifes>5){
+  //   lifes=Number(window.prompt(`${firstName} dont you think you asking for too many lifes choose again but less that 5 this time!?`))
+  // }
+  let lifes= 2
+  console.log(lifes)
 
   const theGrid = document.querySelector(".grid-screen")
   console.log(theGrid)
@@ -7,13 +20,20 @@ function init() {
   console.log("the number of cells:", numberCells)
   const cellsArray = []
   console.log("my array with all divs:", cellsArray)
-
+  //? spaceship stuff
   const spaceshipClass = 'spaceShip'
   const shipStartPosition = numberCells-11
   let shipCurrentPosition = numberCells-11
 
   console.log("ship starting position cell: ", shipStartPosition)
   console.log("ship current position cell: ", shipCurrentPosition)
+  //! this is enemy stuff
+  const enemyClass ="enemy" 
+  const enemyStartPosition=7
+  let enemyCurrentPosition=7
+
+  
+
 
 
 
@@ -26,6 +46,7 @@ function init() {
       cellsArray.push(cell)
     }
     addSpaceShip(shipStartPosition)
+    addEnemy(enemyStartPosition)
   }
 
   //Add the ship to the grid
@@ -61,9 +82,29 @@ function init() {
     }
     addSpaceShip(shipCurrentPosition)
   }
+
+
   document.addEventListener('keyup', handleKeyUp)
   createGrid()
 
+
+  //! add enemy to the grid!
+function addEnemy(position){
+  cellsArray[position].classList.add(enemyClass)
+  console.log("enemy position: ",enemyStartPosition)
+  enemymoves(enemyStartPosition)
+}
+
+function removeEnemy(position){
+  console.log("remove ENEMY works")
+  cellsArray[position].classList.remove(enemyClass)
+}
+
+function enemymoves(position){
+  // removeEnemy(position)
+  // enemyCurrentPosition++
+  // addEnemy(enemyCurrentPosition)
+}
 
 
 }

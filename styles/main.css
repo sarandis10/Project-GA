@@ -75,4 +75,13 @@ body{
     cursor: pointer; */
   }
 
-  
+
+  .grid-screen div.enemy {
+    background-color: red;
+    /* background-image: url('../assets/cat.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer; */
+  }
+
+

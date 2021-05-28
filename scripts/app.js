@@ -17,7 +17,6 @@ function init() {
 
 
 
-
   //The Grid
   function createGrid() {
     for (let i = 1; i < numberCells; i++) {
@@ -64,6 +63,8 @@ function init() {
   }
   document.addEventListener('keyup', handleKeyUp)
   createGrid()
+
+
 
 }
 window.addEventListener('DOMContentLoaded', init)

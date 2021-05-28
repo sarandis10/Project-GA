@@ -47,6 +47,21 @@ function init() {
     const key = event.keyCode
     console.log(key)
     removeSpaceShip(shipCurrentPosition)
+
+    if (key==39 && shipCurrentPosition<numberCells-2){
+      shipCurrentPosition++
+    }
+    if (key==37 && shipCurrentPosition>0){
+      shipCurrentPosition--
+    }
+    if (key==38 && shipCurrentPosition >= width){
+      shipCurrentPosition=shipCurrentPosition-width
+    }
+    if (key==40 && shipCurrentPosition<341){
+      shipCurrentPosition=shipCurrentPosition+width
+    }
+
+    addSpaceShip(shipCurrentPosition)
   }
 
 

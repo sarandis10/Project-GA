@@ -1,6 +1,6 @@
 function init() {
     
-
+const theGrid=document.querySelector()
 
 
 

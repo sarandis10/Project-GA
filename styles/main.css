@@ -66,3 +66,11 @@ body{
     flex: 1;
     margin-top: 20%;
 }
+
+.grid-screen div.spaceShip {
+    background-color: lightcoral;
+    /* background-image: url('../assets/cat.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer; */
+  }

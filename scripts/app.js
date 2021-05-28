@@ -3,24 +3,39 @@ function init() {
 const theGrid=document.querySelector(".grid-screen")
 console.log(theGrid)
 const width=20
-const numberCells=width*(width)-39
-// console.log(numberCells)
+const numberCells=width*(width)-40
+console.log("the number of cells:",numberCells)
 const cellsArray=[]
+console.log("my array with all divs:",cellsArray)
 
-const spaceshipClass="spaceShip"
+const spaceshipClass='spaceShip'
+const shipStartPosition=0
+console.log("ship starting position cell: ",shipStartPosition)
 
-// const shipStartPosition
+
 
 
 //The Grid
 function createGrid(){
-  for (let i=1; i<numberCells; i++){
+  for (let i=0; i<numberCells; i++){
     const cell= document.createElement("div")
     cell.innerText = i
     theGrid.appendChild(cell)
     cellsArray.push(cell)
   }
+  addSpaceShip(shipStartPosition)
 }
+
+//Add the ship to the grid
+
+function addSpaceShip(position){
+  console.log('position of the spaceship :', position)
+  cellsArray[position].classList.add(spaceshipClass)
+}
+
+
+
+
 createGrid()
 
 }

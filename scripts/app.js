@@ -90,7 +90,10 @@ function init() {
         bulletCurrentPosition = bulletCurrentPosition -20
         console.log("bullet current poss",bulletCurrentPosition)
         cellsArray[bulletCurrentPosition].classList.add(bulletClass)
-      }, 1000)
+        if (bulletCurrentPosition<0){
+          removeBullet(bulletCurrentPosition)
+        }
+      }, 500)
 
     }
   }
@@ -147,6 +150,10 @@ function init() {
       lifes--
       lifesDisplay.innerText = lifes
     }
+
+    
+
+
   }
 
 

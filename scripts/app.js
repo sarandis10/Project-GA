@@ -50,7 +50,7 @@ function init() {
   function createGrid() {
     for (let i = 1; i < numberCells; i++) {
       const cell = document.createElement("div")
-      cell.innerText = i
+      // cell.innerText = i
       theGrid.appendChild(cell)
       cellsArray.push(cell)
     }

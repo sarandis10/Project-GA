@@ -35,7 +35,7 @@ body{
     flex-wrap: wrap;
     min-width: 800px;
     background-image:
-    linear-gradient(rgba(7, 7, 7, 0.05), rgba(121, 58, 58, 0.3)), url('../assets/space.jfif');
+    linear-gradient(rgba(7, 7, 7, 0.05), rgba(121, 58, 58, 0.3)), url('../assets/space.jpg');
     background-repeat: no-repeat;
     background-size:cover
     
@@ -74,12 +74,34 @@ body{
     flex: 1;
     margin-top: 20%;
 }
+.start{
+    box-shadow: 3px 4px 0px 0px #8a2a21;
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+	background-color:#c62d1f;
+	border-radius:18px;
+	border:1px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	font-style:italic;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 8px 1px #810e05;
+}
+
+.start:hover {
+	background:linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
+	background-color:#f24437;
+}
 
 .grid-screen div.spaceShip {
-    background-color: lightcoral;
-    background-image: url(/assets/spaceship.jfif);
+    background-color: rgb(197, 3, 3);
+    clip-path: polygon(5% 46%, 55% 13%, 30% 49%, 74% 48%, 55% 14%, 100% 50%, 100% 0, 65% 82%, 100% 100%, 0 100%, 40% 81%, 0 0);
+    /* background-image: url(/assets/spaceship.jfif);
     background-repeat: no-repeat;
-    background-size:cover
+    background-size:cover */
 
   }
 
@@ -94,14 +116,12 @@ body{
 
 
   .grid-screen div.bullet {
-    background-color: green;
+      background-color: rgb(223, 15, 15);
+      clip-path: polygon(50% 0%, 35% 97%, 68% 97%);
+    /* background-color: rgb(2, 2, 12);
     background-image: url(/assets/bullet.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* background-image: url('../assets/cat.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer; */
+    background-repeat:no-repeat;
+    background-size: cover; */
   }
 
 

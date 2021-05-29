@@ -10,15 +10,15 @@ function init() {
   // if (lifes>5){
   //   lifes=Number(window.prompt(`${firstName} dont you think you asking for too many lifes choose again but less that 5 this time!?`))
   // }
-  const scoreDisplay=document.querySelector('.score-display')
-  const lifesDisplay=document.querySelector('.lifes-display')
-  let score=0
-  let lifes=3
+  const scoreDisplay = document.querySelector('.score-display')
+  const lifesDisplay = document.querySelector('.lifes-display')
+  let score = 0
+  let lifes = 3
   // scoreDisplay.innerText=score
-  lifesDisplay.innerText=lifes
+  lifesDisplay.innerText = lifes
 
   // console.log(scoreDisplay,lifesDisplay)
-  
+
   console.log(lifes)
 
   const theGrid = document.querySelector(".grid-screen")
@@ -64,14 +64,14 @@ function init() {
   function addSpaceShip(position) {
     console.log('ADD SPACESHIP:', position)
     cellsArray[position].classList.add(spaceshipClass)
-    console.log("ship current poss",shipCurrentPosition)
+    console.log("ship current poss", shipCurrentPosition)
   }
 
   //! add enemy to the grid!
   function addEnemy(position) {
     console.log('ADD EENEMY FUNCTION', position)
     cellsArray[position].classList.add(enemyClass)
-    console.log("enemy current pos" ,enemyCurrentPosition)
+    console.log("enemy current pos", enemyCurrentPosition)
   }
 
   //remove spacehip to the grid
@@ -85,10 +85,15 @@ function init() {
     cellsArray[position].classList.remove(enemyClass)
   }
 
+  //?  Add bullet in the screen 
+
+  function
+
+
   //movement logic 
   function handleKeyUp(event) {
     const key = event.keyCode
-    console.log("MOVEMENT LOGIC",key)
+    console.log("MOVEMENT LOGIC", key)
     removeSpaceShip(shipCurrentPosition)
 
     if (key == 39 && shipCurrentPosition < numberCells - 2) {
@@ -120,21 +125,25 @@ function init() {
       console.log("ENEMY MOVEMENT", position)
       enemyCurrentPosition = enemyCurrentPosition + 1
       addEnemy(enemyCurrentPosition)
-     
-      colision(shipCurrentPosition,enemyCurrentPosition)
+
+      colision(shipCurrentPosition, enemyCurrentPosition)
 
     }, 10000)
   }
-    //collision detection
-   function colision(shipCurrentPosition,enemyCurrentPosition){
-       console.log("INSIDE COLISION FUNCTION")
-      if (shipCurrentPosition==enemyCurrentPosition){
-        lifes--
-        lifesDisplay.innerText=lifes
-      }
-   } 
-    
-  
+  //collision detection
+  function colision(shipCurrentPosition, enemyCurrentPosition) {
+    console.log("INSIDE COLISION FUNCTION")
+    if (shipCurrentPosition == enemyCurrentPosition || enemyCurrentPosition == shipCurrentPosition) {
+      lifes--
+      lifesDisplay.innerText = lifes
+    }
+  }
+
+
+
+
+
+
 
 
 }

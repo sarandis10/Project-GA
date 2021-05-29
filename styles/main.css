@@ -85,3 +85,12 @@ body{
   }
 
 
+  .grid-screen div.bullet {
+    background-color: green;
+    /* background-image: url('../assets/cat.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer; */
+  }
+
+

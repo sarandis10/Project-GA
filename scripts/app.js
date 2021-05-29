@@ -1,15 +1,6 @@
 function init() {
 
-  // const firstName = (window.prompt("Hello There what is your name?"))
-  // let lifes=Number(window.prompt(`hello ${firstName} how many lifes do you want to begin with?`))
 
-  // if (lifes>5){
-  //   lifes=Number(window.prompt(`${firstName} dont you think you asking for too many lifes choose again but less that 5 this time!?`))
-  // }
-
-  // if (lifes>5){
-  //   lifes=Number(window.prompt(`${firstName} dont you think you asking for too many lifes choose again but less that 5 this time!?`))
-  // }
   const scoreDisplay = document.querySelector('.score-display')
   const lifesDisplay = document.querySelector('.lifes-display')
   let score = 0
@@ -39,6 +30,9 @@ function init() {
   //? bullet stuff
   let bulletCurrentPosition = shipCurrentPosition
   const bulletClass = "bullet"
+
+
+  const enemies=[3,5,9,10]
 
 
   //! this is enemy stuff
@@ -180,6 +174,17 @@ function init() {
   setInterval(() => {
     watchScreen.innerHTML = getCurrentTime()
   }, 1000)
+
+// brief
+
+const theBrief=document.querySelector(".brief")
+console.log(theBrief)
+const briefString="The Brief: \n kill all the space invaders and save the prince who has been kidnapped!"
+
+theBrief.innerText=setInterval(
+()=>{
+  theBrief.innerText=briefString
+},2000)
 
 
 }

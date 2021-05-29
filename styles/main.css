@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
 body{
     font-family: 'ZCOOL KuaiLe', cursive;
+    color: rgba(253, 0, 51, 0.842);
 }
 .main-screen{
     height: 100vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: rgb(58, 51, 51);
 }
 
 .control-screen{
@@ -20,22 +22,28 @@ body{
     height: 95%;
     width: 10%;
     min-width: 200px;
-    /* width: 200px; */
+    background-color: rgba(10, 4, 10, 0.13);
+
 }
 
 .grid-screen{
     align-items: center;
-    /* width: 900px; */
     width: 70%;
     height: 95%;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     display: flex;
     flex-wrap: wrap;
     min-width: 800px;
+    background-image:
+    linear-gradient(rgba(7, 7, 7, 0.05), rgba(121, 58, 58, 0.3)), url('../assets/space.jfif');
+    background-repeat: no-repeat;
+    background-size:cover
+    
+
 }
 
  .grid-screen div {
-    border: 1px solid lightblue;
+    border: 1px solid rgb(40, 44, 48);
     flex-grow: 1;
     height: 5%;
     width: 4.7%;
@@ -69,24 +77,27 @@ body{
 
 .grid-screen div.spaceShip {
     background-color: lightcoral;
-    /* background-image: url('../assets/cat.png');
+    background-image: url(/assets/spaceship.jfif);
     background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer; */
+    background-size:cover
+
   }
 
 
   .grid-screen div.enemy {
+      
     background-color: red;
-    /* background-image: url('../assets/cat.png');
+    background-image:url(/assets/alien.jfif);
     background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer; */
+    background-size: cover;
   }
 
 
   .grid-screen div.bullet {
     background-color: green;
+    background-image: url(/assets/bullet.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     /* background-image: url('../assets/cat.png');
     background-repeat: no-repeat;
     background-size: contain;

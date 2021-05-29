@@ -1,5 +1,5 @@
 function init() {
-  let score = 0
+
   // const firstName = (window.prompt("Hello There what is your name?"))
   // let lifes=Number(window.prompt(`hello ${firstName} how many lifes do you want to begin with?`))
 
@@ -10,7 +10,15 @@ function init() {
   // if (lifes>5){
   //   lifes=Number(window.prompt(`${firstName} dont you think you asking for too many lifes choose again but less that 5 this time!?`))
   // }
-  let lifes = 2
+  const scoreDisplay=document.querySelector('.score-display')
+  const lifesDisplay=document.querySelector('.lifes-display')
+  let score=0
+  let lifes=3
+  // scoreDisplay.innerText=score
+  // lifesDisplay.innerText=lifes
+
+  // console.log(scoreDisplay,lifesDisplay)
+  
   console.log(lifes)
 
   const theGrid = document.querySelector(".grid-screen")
@@ -27,7 +35,7 @@ function init() {
   const shipStartPosition = numberCells - 11
   let shipCurrentPosition = numberCells - 11
 
-  
+
   //! this is enemy stuff
   const enemyClass = "enemy"
   const enemyStartPosition = 7
@@ -93,7 +101,7 @@ function init() {
     if (key == 40 && shipCurrentPosition < 341) {
       shipCurrentPosition = shipCurrentPosition + width
     }
-    
+
     addSpaceShip(shipCurrentPosition)
   }
 
@@ -104,16 +112,17 @@ function init() {
   //! move enemy
   function enemymoves(position) {
     addEnemy(position)
-      
+
     const timer = setInterval(() => {
       removeEnemy(enemyCurrentPosition)
-      console.log("enemy pos",position)
-      enemyCurrentPosition=enemyCurrentPosition+1
-      console.log("enemy pos after itt",enemyCurrentPosition)
+      console.log("enemy pos", position)
+      enemyCurrentPosition = enemyCurrentPosition + 1
+      console.log("enemy pos after itt", enemyCurrentPosition)
       addEnemy(enemyCurrentPosition)
     }, 500)
-    
   }
+
+  // function colision
 
 
 }

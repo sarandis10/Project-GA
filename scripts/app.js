@@ -86,13 +86,20 @@ function init() {
       bulletCurrentPosition = shipCurrentPosition
       cellsArray[bulletCurrentPosition].classList.add(bulletClass)
       const timer = setInterval(() => {
-        cellsArray[bulletCurrentPosition].classList.remove(bulletClass)
-        bulletCurrentPosition = bulletCurrentPosition + 1
+        removeBullet(bulletCurrentPosition)
+        bulletCurrentPosition = bulletCurrentPosition -20
+        console.log("bullet current poss",bulletCurrentPosition)
         cellsArray[bulletCurrentPosition].classList.add(bulletClass)
-      }, 5000)
+      }, 1000)
 
     }
   }
+
+  // ? remove bullet
+
+   function removeBullet(position){
+    cellsArray[position].classList.remove(bulletClass)
+   }
 
   //movement logic 
   function handleKeyUp(event) {

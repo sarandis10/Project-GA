@@ -120,17 +120,19 @@ function init() {
       console.log("ENEMY MOVEMENT", position)
       enemyCurrentPosition = enemyCurrentPosition + 1
       addEnemy(enemyCurrentPosition)
-      //collision detection 
+     
+      colision(shipCurrentPosition,enemyCurrentPosition)
+
+    }, 10000)
+  }
+    //collision detection
+   function colision(shipCurrentPosition,enemyCurrentPosition){
+       console.log("INSIDE COLISION FUNCTION")
       if (shipCurrentPosition==enemyCurrentPosition){
         lifes--
         lifesDisplay.innerText=lifes
       }
-
-
-    }, 10000)
-  }
-    
-    
+   } 
     
   
 

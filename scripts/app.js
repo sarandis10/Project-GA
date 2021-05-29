@@ -50,7 +50,7 @@ function init() {
   function createGrid() {
     for (let i = 1; i < numberCells; i++) {
       const cell = document.createElement("div")
-      // cell.innerText = i
+      cell.innerText = i
       theGrid.appendChild(cell)
       cellsArray.push(cell)
     }
@@ -84,20 +84,22 @@ function init() {
   function fireBullet(event) {
     const key = event.keyCode
     if (key == 32) {
-      bulletCurrentPosition = shipCurrentPosition
+      bulletCurrentPosition = shipCurrentPosition - 20
       cellsArray[bulletCurrentPosition].classList.add(bulletClass)
       const timer = setInterval(() => {
         removeBullet(bulletCurrentPosition)
         bulletCurrentPosition = bulletCurrentPosition - 20
         console.log("bullet current poss", bulletCurrentPosition)
         cellsArray[bulletCurrentPosition].classList.add(bulletClass)
+        colisionTwo(bulletCurrentPosition, enemyCurrentPosition)
         if (bulletCurrentPosition < 0) {
           removeBullet(bulletCurrentPosition)
         }
       }, 500)
       console.log("Ftanoume edo?")
-      colisionTwo(bulletCurrentPosition, enemyCurrentPosition)
+      
     }
+    
   }
 
   // ? remove bullet
@@ -152,8 +154,8 @@ function init() {
       lifes--
       lifesDisplay.innerText = lifes
     }
-    if (lifes==2){
-      alert ("Game Over")
+    if (lifes == 2) {
+      alert("Game Over")
     }
   }
   function colisionTwo(bulletCurrentPosition, enemyCurrentPosition) {
@@ -167,11 +169,12 @@ function init() {
     }
   }
 
-//this is for the watch only!!
+  //this is for the watch only!!
   const watchScreen = document.querySelector('.time')
-  function getCurrentTime() { 
-    const currentTime = new Date()
-    return currentTime.toLocaleTimeString()
+  let timer = 0
+  function getCurrentTime() {
+    timer++
+    return timer
   }
   watchScreen.innerHTML = getCurrentTime()
   setInterval(() => {

@@ -16,6 +16,7 @@ function init() {
   let lifes = 3
 
   lifesDisplay.innerText = lifes
+  scoreDisplay.innerText = score
 
 
 
@@ -87,22 +88,23 @@ function init() {
       cellsArray[bulletCurrentPosition].classList.add(bulletClass)
       const timer = setInterval(() => {
         removeBullet(bulletCurrentPosition)
-        bulletCurrentPosition = bulletCurrentPosition -20
-        console.log("bullet current poss",bulletCurrentPosition)
+        bulletCurrentPosition = bulletCurrentPosition - 20
+        console.log("bullet current poss", bulletCurrentPosition)
         cellsArray[bulletCurrentPosition].classList.add(bulletClass)
-        if (bulletCurrentPosition<0){
+        if (bulletCurrentPosition < 0) {
           removeBullet(bulletCurrentPosition)
         }
       }, 500)
-
+      console.log("Ftanoume edo?")
+      colisionTwo(bulletCurrentPosition, enemyCurrentPosition)
     }
   }
 
   // ? remove bullet
 
-   function removeBullet(position){
+  function removeBullet(position) {
     cellsArray[position].classList.remove(bulletClass)
-   }
+  }
 
   //movement logic 
   function handleKeyUp(event) {
@@ -140,7 +142,7 @@ function init() {
       enemyCurrentPosition = enemyCurrentPosition + 1
       addEnemy(enemyCurrentPosition)
       colision(shipCurrentPosition, enemyCurrentPosition)
-
+      console.log("enemy pos", enemyCurrentPosition)
     }, 10000)
   }
   //collision detection BETWEEN SPACESHIP AND ENEMY
@@ -150,12 +152,20 @@ function init() {
       lifes--
       lifesDisplay.innerText = lifes
     }
-
-    
-
-
+    if (lifes==0){
+      alert ("Game Over")
+    }
   }
-
+  function colisionTwo(bulletCurrentPosition, enemyCurrentPosition) {
+    console.log("eewewew", bulletCurrentPosition, enemyCurrentPosition)
+    if (bulletCurrentPosition == enemyCurrentPosition) {
+      console.log("mpainei mesa sto if?")
+      score = score + 100
+      scoreDisplay.innerText = score
+      removeEnemy(enemyCurrentPosition)
+      removeBullet(bulletCurrentPosition)
+    }
+  }
 
 
 

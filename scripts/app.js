@@ -15,7 +15,7 @@ function init() {
   let score=0
   let lifes=3
   // scoreDisplay.innerText=score
-  // lifesDisplay.innerText=lifes
+  lifesDisplay.innerText=lifes
 
   // console.log(scoreDisplay,lifesDisplay)
   
@@ -62,19 +62,21 @@ function init() {
 
   //Add the ship to the grid
   function addSpaceShip(position) {
-    console.log('position of the spaceship :', position)
+    console.log('ADD SPACESHIP:', position)
     cellsArray[position].classList.add(spaceshipClass)
+    console.log("ship current poss",shipCurrentPosition)
   }
 
   //! add enemy to the grid!
   function addEnemy(position) {
-    console.log('position of the enemy :', position)
+    console.log('ADD EENEMY FUNCTION', position)
     cellsArray[position].classList.add(enemyClass)
+    console.log("enemy current pos" ,enemyCurrentPosition)
   }
 
   //remove spacehip to the grid
   function removeSpaceShip(position) {
-    console.log("remove works")
+    console.log("REMOVE SPACESHIP FUNCTION")
     cellsArray[position].classList.remove(spaceshipClass)
   }
 
@@ -86,7 +88,7 @@ function init() {
   //movement logic 
   function handleKeyUp(event) {
     const key = event.keyCode
-    console.log(key)
+    console.log("MOVEMENT LOGIC",key)
     removeSpaceShip(shipCurrentPosition)
 
     if (key == 39 && shipCurrentPosition < numberCells - 2) {
@@ -115,14 +117,22 @@ function init() {
 
     const timer = setInterval(() => {
       removeEnemy(enemyCurrentPosition)
-      console.log("enemy pos", position)
+      console.log("ENEMY MOVEMENT", position)
       enemyCurrentPosition = enemyCurrentPosition + 1
-      console.log("enemy pos after itt", enemyCurrentPosition)
       addEnemy(enemyCurrentPosition)
-    }, 500)
-  }
+      //collision detection 
+      if (shipCurrentPosition==enemyCurrentPosition){
+        lifes--
+        lifesDisplay.innerText=lifes
+      }
 
-  // function colision
+
+    }, 10000)
+  }
+    
+    
+    
+  
 
 
 }

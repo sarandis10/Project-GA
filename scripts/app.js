@@ -152,7 +152,7 @@ function init() {
       lifes--
       lifesDisplay.innerText = lifes
     }
-    if (lifes==0){
+    if (lifes==2){
       alert ("Game Over")
     }
   }
@@ -167,10 +167,16 @@ function init() {
     }
   }
 
-
-
-
-
+//this is for the watch only!!
+  const watchScreen = document.querySelector('.time')
+  function getCurrentTime() { 
+    const currentTime = new Date()
+    return currentTime.toLocaleTimeString()
+  }
+  watchScreen.innerHTML = getCurrentTime()
+  setInterval(() => {
+    watchScreen.innerHTML = getCurrentTime()
+  }, 1000)
 
 
 }

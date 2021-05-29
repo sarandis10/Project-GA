@@ -23,7 +23,8 @@ body{
     width: 10%;
     min-width: 200px;
     background-color: rgba(10, 4, 10, 0.13);
-
+    border: 9px outset #FF1B1B;
+    border-radius: 40px 40px 0px 0px;
 }
 
 .grid-screen{
@@ -38,8 +39,7 @@ body{
     linear-gradient(rgba(7, 7, 7, 0.05), rgba(121, 58, 58, 0.3)), url('../assets/space.jpg');
     background-repeat: no-repeat;
     background-size:cover
-    
-
+    border: 3px solid black;
 }
 
  .grid-screen div {
@@ -66,9 +66,28 @@ body{
     flex: 1;
     margin-top: 20%;
  }
+ .time-since{
+     margin-bottom: 10px;
+ }
  .time{
-     flex:1;
-     margin-top: 20%;
+    flex:1;
+    margin-top: 20%;
+    width: 154px; 
+    height: 10px;
+    margin-top: 20px;
+    /* background-color: #444; */
+    /* background-image: linear-gradient(300deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.5) 10%, rgba(255,255,255,0.1), rgba(255,255,255,0.1)); */
+    border-radius: 4px;
+    margin: auto;
+    position: relative;
+    top: -10px;
+    text-align: right;
+    font-family: 'PT Mono', monospace;
+    color: #fff;
+    line-height: 42px;
+    font-size: 32px;
+    /* padding: 5px 8px; */
+      
  }
 .console{
     flex: 1;

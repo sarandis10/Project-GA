@@ -6,8 +6,10 @@ function init() {
   const cellsArray = []
   const aliensArray = []
   const alienClass = "enemy"
-  const spaceshipClass= "spaceShip"
+  const spaceshipClass = "spaceShip"
   const numberOfAliens = 10
+  const spaceshipInitialPosition = 370
+  let spaceshipCurrentPosition = spaceshipInitialPosition
   console.log(numberCells)
 
 
@@ -56,16 +58,39 @@ function init() {
   createAliens()
 
 
-  function createSpaceShip() {
-    cellsArray[370].classList.add(spaceshipClass)
+  function createSpaceShip(x) {
+    cellsArray[x].classList.add(spaceshipClass)
   }
-  createSpaceShip()
+  createSpaceShip(spaceshipInitialPosition)
 
-  function spaceshipMovement(){
-    
-    
+  function removeSpaceShip(x) {
+    cellsArray[x].classList.remove(spaceshipClass)
   }
-  spaceshipMovement()
+
+
+
+  function spaceshipMovement(event) {
+    console.log("spaceshipMovement WORKS!!!!")
+    const key = event.keyCode
+    // spaceshipCurrentPosition=spaceshipInitialPosition
+    removeSpaceShip(spaceshipCurrentPosition)
+    console.log(key)
+    if (key == 37) {
+      spaceshipCurrentPosition -= 1
+    }
+    if (key == 39) {
+      spaceshipCurrentPosition += 1
+    }
+    if (key == 38) {
+      spaceshipCurrentPosition -= width
+    }
+    if(key==40){
+      spaceshipCurrentPosition += width
+    }
+    console.log(spaceshipCurrentPosition)
+    createSpaceShip(spaceshipCurrentPosition)
+  }
+  document.addEventListener('keyup', spaceshipMovement)
 
 }
 window.addEventListener('DOMContentLoaded', init)

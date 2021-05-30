@@ -1,4 +1,10 @@
 function init() {
+  const scoreDisplay = document.querySelector('.score-display')
+  const lifesDisplay = document.querySelector('.lifes-display')
+  let score = 0
+  let lifes = 3
+  lifesDisplay.innerText = lifes
+  scoreDisplay.innerText = score
   const theGrid = document.querySelector(".grid-screen")
   const width = 20
   const height = 19
@@ -36,7 +42,6 @@ function init() {
     }
   }
   createRandomNumberForAliens()
-
   function createGrid() {
     for (let i = 0; i < numberCells; i++) {
       const cell = document.createElement("div")
@@ -47,15 +52,19 @@ function init() {
   }
   createGrid()
 
-  function createAliens() {
-    console.log("allies function")
-    for (let i = 0; i < aliensArray.length; i++) {
-      console.log("2ond if")
-      cellsArray[aliensArray[i]].classList.add(alienClass)
-      console.log("allies function IF")
+  function createAliens(x) {
+    for (let i = 0; i < x.length; i++) {
+      cellsArray[x[i]].classList.add(alienClass)
     }
   }
-  createAliens()
+  createAliens(aliensArray)
+
+  function removeAliens() {
+    for (let i = 0; i < aliensArray.length; i++) {
+      cellsArray[aliensArray[i]].classList.remove(alienClass)
+    }
+  }
+  // removeAliens()
 
 
   function createSpaceShip(x) {
@@ -67,24 +76,20 @@ function init() {
     cellsArray[x].classList.remove(spaceshipClass)
   }
 
-
-
   function spaceshipMovement(event) {
-    console.log("spaceshipMovement WORKS!!!!")
     const key = event.keyCode
-    // spaceshipCurrentPosition=spaceshipInitialPosition
     removeSpaceShip(spaceshipCurrentPosition)
     console.log(key)
-    if (key == 37) {
+    if (key == 37 && spaceshipCurrentPosition % width !== 0) {
       spaceshipCurrentPosition -= 1
     }
-    if (key == 39) {
+    if (key == 39 && spaceshipCurrentPosition % width !== width - 1) {
       spaceshipCurrentPosition += 1
     }
-    if (key == 38) {
+    if (key == 38 && spaceshipCurrentPosition >= width) {
       spaceshipCurrentPosition -= width
     }
-    if(key==40){
+    if (key == 40 && spaceshipCurrentPosition + width <= width * height - 1) {
       spaceshipCurrentPosition += width
     }
     console.log(spaceshipCurrentPosition)
@@ -92,11 +97,24 @@ function init() {
   }
   document.addEventListener('keyup', spaceshipMovement)
 
+  // function alienMovement(array) {
+  //   console.log("eeeeeeeeeeee")
+  //   for (let i=0; i=aliensArray.length; i++){
+  //     i=i+20
+  //   }
+  //   createAliens(aliensArray)
+  //   console.log("1111")
+  // }
+
+  // setInterval(alienMovement, 1000)
+
+
 }
+
 window.addEventListener('DOMContentLoaded', init)
 
 
-const scoreDisplay = document.querySelector('.score-display')
+// const scoreDisplay = document.querySelector('.score-display')
 //   const lifesDisplay = document.querySelector('.lifes-display')
 //   let score = 0
 //   let lifes = 3

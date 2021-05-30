@@ -32,7 +32,7 @@ function init() {
   const bulletClass = "bullet"
 
 
-  const enemies=[3,5,9,10]
+
 
 
   //! this is enemy stuff
@@ -44,7 +44,7 @@ function init() {
   function createGrid() {
     for (let i = 1; i < numberCells; i++) {
       const cell = document.createElement("div")
-      cell.innerText = i
+      // cell.innerText = i
       theGrid.appendChild(cell)
       cellsArray.push(cell)
     }

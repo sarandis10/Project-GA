@@ -13,11 +13,12 @@ function init() {
   const aliensArray = []
   const alienClass = "enemy"
   const spaceshipClass = "spaceShip"
-  const bulletClass="bullet"
+  const bulletClass = "bullet"
   let bulletCurrentPosition
   const numberOfAliens = 10
   const spaceshipInitialPosition = 370
   let spaceshipCurrentPosition = spaceshipInitialPosition
+  const theBrief = document.querySelector(".brief")
   console.log(numberCells)
 
 
@@ -69,9 +70,6 @@ function init() {
       cellsArray[x[i]].classList.remove(alienClass)
     }
   }
-  // removeAliens(aliensArray)
-
-
   function createSpaceShip(x) {
     cellsArray[x].classList.add(spaceshipClass)
   }
@@ -97,53 +95,96 @@ function init() {
     if (key == 40 && spaceshipCurrentPosition + width <= width * height - 1) {
       spaceshipCurrentPosition += width
     }
-    if(key==32){
+    if (key == 32) {
       // console.log("1")
-      createBullet(spaceshipCurrentPosition-20)
+      createBullet(spaceshipCurrentPosition - 20)
       // console.log("5")
-      bulletCurrentPosition=spaceshipCurrentPosition-20
+      bulletCurrentPosition = spaceshipCurrentPosition - 20
     }
     console.log(spaceshipCurrentPosition)
     createSpaceShip(spaceshipCurrentPosition)
   }
   document.addEventListener('keyup', spaceshipMovement)
 
-  function createBullet(x){
-    // console.log("2")
+  function createBullet(x) {
+    console.log("b2")
     cellsArray[x].classList.add(bulletClass)
-    // console.log("3")
-        setInterval(() => {
-        // console.log("6")
-        removeBullet(bulletCurrentPosition)
-        bulletCurrentPosition=bulletCurrentPosition-20
-        cellsArray[bulletCurrentPosition].classList.add(bulletClass)
-        // console.log("7") 
-        if(bulletCurrentPosition/20>1){
-          
-                  }
-      }, 500)
-      // console.log("4")
+    console.log("b3")
+    setInterval(() => {
+      console.log("b6")
+      removeBullet(bulletCurrentPosition)
+      bulletCurrentPosition = bulletCurrentPosition - 20
+      cellsArray[bulletCurrentPosition].classList.add(bulletClass)
+      console.log("b7")
+      // collisionDetectionAlienBullet() 
+      if (bulletCurrentPosition / 20 > 1) {
+
+      }
+    }, 2000)
+    console.log("b4")
   }
 
-  function removeBullet(x){
+  function removeBullet(x) {
     cellsArray[x].classList.remove(bulletClass)
   }
 
-  function alienMovement(){
+  function alienMovement() {
     console.log("1")
     removeAliens(aliensArray)
     console.log("2")
-    for (let i=0; i<aliensArray.length; i++){
-      aliensArray[i] +=20
+    for (let i = 0; i < aliensArray.length; i++) {
+      aliensArray[i] += 20
       console.log("3")
     }
     console.log("4")
     createAliens(aliensArray)
+    collisionDetectionAlienShip()
+    collisionDetectionAlienBullet()
   }
+  setInterval(alienMovement, 10000)
+
+  function collisionDetectionAlienShip() {
+    if (cellsArray[spaceshipCurrentPosition]
+      .classList.contains(alienClass, spaceshipClass)) {
+      lifes--
+      lifesDisplay.innerText = lifes
+      if (lifes == 0) {
+        lifesDisplay.innerText = 0
+        window.alert("Game over!")
+      }
+    }
+  }
+
+  function collisionDetectionAlienBullet(bulletCurrentPosition, cellsArray) {
+    console.log("colision between all and bullet")
+
+  }
+
+
+
+
+
+
+  const watchScreen = document.querySelector('.time')
+  let timer = 0
+  function getCurrentTime() {
+    timer++
+    return timer
+  }
+  watchScreen.innerHTML = getCurrentTime()
+  setInterval(() => {
+    watchScreen.innerHTML = getCurrentTime()
+  }, 1000)
+
   
-setInterval(alienMovement,10000)
-  
-  
+  console.log(theBrief)
+  const briefString = "The Brief: \n kill all the space invaders and save the prince who has been kidnapped!"
+
+  theBrief.innerText = setInterval(
+    () => {
+      theBrief.innerText = briefString
+    }, 2000)
+
 
 
 }

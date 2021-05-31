@@ -19,7 +19,8 @@ function init() {
   const spaceshipInitialPosition = 370
   let spaceshipCurrentPosition = spaceshipInitialPosition
   const theBrief = document.querySelector(".brief")
-  console.log(numberCells)
+  const audio = document.querySelector('#audio')
+  console.log("is this audio?",audio)
 
 
   function createRandomNumberForAliens() {
@@ -129,6 +130,7 @@ function init() {
   }
 
   function alienMovement() {
+    playAudio() 
     console.log("1")
     removeAliens(aliensArray)
     console.log("2")
@@ -185,7 +187,12 @@ function init() {
       theBrief.innerText = briefString
     }, 2000)
 
-
+    function playAudio() {
+      console.log("music play!")
+      audio.src = "/assets/Space.mp3"
+      audio.play()
+    }
+    playAudio() 
 
 }
 

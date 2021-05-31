@@ -13,6 +13,8 @@ function init() {
   const aliensArray = []
   const alienClass = "enemy"
   const spaceshipClass = "spaceShip"
+  const bulletClass="bullet"
+  let bulletCurrentPosition
   const numberOfAliens = 10
   const spaceshipInitialPosition = 370
   let spaceshipCurrentPosition = spaceshipInitialPosition
@@ -42,6 +44,7 @@ function init() {
     }
   }
   createRandomNumberForAliens()
+
   function createGrid() {
     for (let i = 0; i < numberCells; i++) {
       const cell = document.createElement("div")
@@ -53,18 +56,20 @@ function init() {
   createGrid()
 
   function createAliens(x) {
+    console.log("CREATE aliens array function")
     for (let i = 0; i < x.length; i++) {
       cellsArray[x[i]].classList.add(alienClass)
     }
   }
   createAliens(aliensArray)
 
-  function removeAliens() {
-    for (let i = 0; i < aliensArray.length; i++) {
-      cellsArray[aliensArray[i]].classList.remove(alienClass)
+  function removeAliens(x) {
+    console.log("REMOVE aliens array function")
+    for (let i = 0; i < x.length; i++) {
+      cellsArray[x[i]].classList.remove(alienClass)
     }
   }
-  // removeAliens()
+  // removeAliens(aliensArray)
 
 
   function createSpaceShip(x) {
@@ -92,21 +97,53 @@ function init() {
     if (key == 40 && spaceshipCurrentPosition + width <= width * height - 1) {
       spaceshipCurrentPosition += width
     }
+    if(key==32){
+      // console.log("1")
+      createBullet(spaceshipCurrentPosition-20)
+      // console.log("5")
+      bulletCurrentPosition=spaceshipCurrentPosition-20
+    }
     console.log(spaceshipCurrentPosition)
     createSpaceShip(spaceshipCurrentPosition)
   }
   document.addEventListener('keyup', spaceshipMovement)
 
-  // function alienMovement(array) {
-  //   console.log("eeeeeeeeeeee")
-  //   for (let i=0; i=aliensArray.length; i++){
-  //     i=i+20
-  //   }
-  //   createAliens(aliensArray)
-  //   console.log("1111")
-  // }
+  function createBullet(x){
+    // console.log("2")
+    cellsArray[x].classList.add(bulletClass)
+    // console.log("3")
+        setInterval(() => {
+        // console.log("6")
+        removeBullet(bulletCurrentPosition)
+        bulletCurrentPosition=bulletCurrentPosition-20
+        cellsArray[bulletCurrentPosition].classList.add(bulletClass)
+        // console.log("7") 
+        if(bulletCurrentPosition/20>1){
+          
+                  }
+      }, 500)
+      // console.log("4")
+  }
 
-  // setInterval(alienMovement, 1000)
+  function removeBullet(x){
+    cellsArray[x].classList.remove(bulletClass)
+  }
+
+  function alienMovement(){
+    console.log("1")
+    removeAliens(aliensArray)
+    console.log("2")
+    for (let i=0; i<aliensArray.length; i++){
+      aliensArray[i] +=20
+      console.log("3")
+    }
+    console.log("4")
+    createAliens(aliensArray)
+  }
+  
+setInterval(alienMovement,10000)
+  
+  
 
 
 }

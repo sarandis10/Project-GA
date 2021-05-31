@@ -143,7 +143,6 @@ body{
 
 
   .grid-screen div.enemy {
-      
     background-color: red;
     background-image:url(/assets/alien.jfif);
     background-repeat: no-repeat;

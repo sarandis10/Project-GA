@@ -1,4 +1,6 @@
 function init() {
+function startGame(){
+
   const scoreDisplay = document.querySelector('.score-display')
   const lifesDisplay = document.querySelector('.lifes-display')
   let score = 0
@@ -46,7 +48,7 @@ function init() {
       aliensArray.push(randomNumber)
     }
   }
-  createRandomNumberForAliens()
+  // createRandomNumberForAliens()
 
   function createGrid() {
     for (let i = 0; i < numberCells; i++) {
@@ -56,17 +58,17 @@ function init() {
       cellsArray.push(cell)
     }
   }
-  createGrid()
+  // createGrid()
 
   function createAliens(x) {
     for (let i = 0; i < x.length; i++) {
-      if (!alliensRemovedArray.includes(i)){
+      if (!alliensRemovedArray.includes(i)) {
         cellsArray[x[i]].classList.add(alienClass)
       }
-     
+
     }
   }
-  createAliens(aliensArray)
+  // createAliens(aliensArray)
 
   function removeAliens(x) {
     for (let i = 0; i < x.length; i++) {
@@ -76,7 +78,7 @@ function init() {
   function createSpaceShip(x) {
     cellsArray[x].classList.add(spaceshipClass)
   }
-  createSpaceShip(spaceshipInitialPosition)
+  // createSpaceShip(spaceshipInitialPosition)
 
   function removeSpaceShip(x) {
     cellsArray[x].classList.remove(spaceshipClass)
@@ -89,22 +91,22 @@ function init() {
     if (key == 37 && spaceshipCurrentPosition % width !== 0) {
       spaceshipCurrentPosition -= 1
       collisionDetectionAlienShip()
-      
+
     }
     if (key == 39 && spaceshipCurrentPosition % width !== width - 1) {
       spaceshipCurrentPosition += 1
       collisionDetectionAlienShip()
-      
+
     }
     if (key == 38 && spaceshipCurrentPosition >= width) {
       spaceshipCurrentPosition -= width
       collisionDetectionAlienShip()
-      
+
     }
     if (key == 40 && spaceshipCurrentPosition + width <= width * height - 1) {
       spaceshipCurrentPosition += width
       collisionDetectionAlienShip()
-      
+
     }
     if (key == 32) {
       createBullet(spaceshipCurrentPosition - 20)
@@ -197,10 +199,7 @@ function init() {
     watchScreen.innerHTML = getCurrentTime()
   }, 1000)
 
-
-  console.log(theBrief)
   const briefString = "The Brief: \n kill all the space invaders and save the prince who has been kidnapped!"
-
   theBrief.innerText = setInterval(
     () => {
       theBrief.innerText = briefString
@@ -217,6 +216,17 @@ function init() {
     audio.src = "/assets/sniper.mp3"
     audio.play()
   }
+
+
+  
+    createRandomNumberForAliens()
+    createGrid()
+    createAliens(aliensArray)
+    createSpaceShip(spaceshipInitialPosition)
+
+}
+  document.addEventListener("click", startGame)
+
 }
 window.addEventListener('DOMContentLoaded', init)
 

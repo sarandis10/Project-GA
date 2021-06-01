@@ -161,7 +161,16 @@ body{
 
   .grid-screen div.extraLife{
       background-color: red;
-      clip-path: polygon(13% 15%, 29% 9%, 49% 28%, 68% 8%, 82% 14%, 89% 30%, 84% 41%, 67% 65%, 48% 89%, 33% 70%, 18% 53%, 8% 31%); 
+      clip-path: polygon(13% 15%, 29% 9%, 49% 28%, 68% 8%, 82% 14%, 89% 30%, 84% 41%, 67% 65%, 48% 89%, 33% 70%, 18% 53%, 8% 31%);
+      animation-name:forTheExtraLife;
+      animation-duration: 1s;
+      animation-iteration-count: infinite; 
      }
+
+
+     @keyframes forTheExtraLife {
+        from {background-color: red;}
+        to {background-color: yellow;}
+      }
 
 

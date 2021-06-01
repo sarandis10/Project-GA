@@ -1,5 +1,5 @@
 function init() {
-function startGame(){
+
 
   const scoreDisplay = document.querySelector('.score-display')
   const lifesDisplay = document.querySelector('.lifes-display')
@@ -17,6 +17,7 @@ function startGame(){
   const alienClass = "enemy"
   const spaceshipClass = "spaceShip"
   const bulletClass = "bullet"
+  const lifeClass="extraLife"
   const numberOfAliens = 10
   const spaceshipInitialPosition = 370
   let spaceshipCurrentPosition = spaceshipInitialPosition
@@ -24,6 +25,7 @@ function startGame(){
   const theBrief = document.querySelector(".brief")
   const audio = document.querySelector('#audio')
   console.log("is this audio?", audio)
+  let randomLifeNumber
 
 
   function createRandomNumberForAliens() {
@@ -48,7 +50,7 @@ function startGame(){
       aliensArray.push(randomNumber)
     }
   }
-  // createRandomNumberForAliens()
+  createRandomNumberForAliens()
 
   function createGrid() {
     for (let i = 0; i < numberCells; i++) {
@@ -58,7 +60,7 @@ function startGame(){
       cellsArray.push(cell)
     }
   }
-  // createGrid()
+  createGrid()
 
   function createAliens(x) {
     for (let i = 0; i < x.length; i++) {
@@ -68,7 +70,7 @@ function startGame(){
 
     }
   }
-  // createAliens(aliensArray)
+  createAliens(aliensArray)
 
   function removeAliens(x) {
     for (let i = 0; i < x.length; i++) {
@@ -78,7 +80,7 @@ function startGame(){
   function createSpaceShip(x) {
     cellsArray[x].classList.add(spaceshipClass)
   }
-  // createSpaceShip(spaceshipInitialPosition)
+  createSpaceShip(spaceshipInitialPosition)
 
   function removeSpaceShip(x) {
     cellsArray[x].classList.remove(spaceshipClass)
@@ -91,28 +93,29 @@ function startGame(){
     if (key == 37 && spaceshipCurrentPosition % width !== 0) {
       spaceshipCurrentPosition -= 1
       collisionDetectionAlienShip()
-
+      collisionDetectionSpaceShipHeart()
     }
     if (key == 39 && spaceshipCurrentPosition % width !== width - 1) {
       spaceshipCurrentPosition += 1
       collisionDetectionAlienShip()
-
+      collisionDetectionSpaceShipHeart()
     }
     if (key == 38 && spaceshipCurrentPosition >= width) {
       spaceshipCurrentPosition -= width
       collisionDetectionAlienShip()
-
+      collisionDetectionSpaceShipHeart()
     }
     if (key == 40 && spaceshipCurrentPosition + width <= width * height - 1) {
       spaceshipCurrentPosition += width
       collisionDetectionAlienShip()
-
+      collisionDetectionSpaceShipHeart()
     }
     if (key == 32) {
       createBullet(spaceshipCurrentPosition - 20)
       bulletCurrentPosition = spaceshipCurrentPosition - 20
     }
     console.log(spaceshipCurrentPosition)
+    
     createSpaceShip(spaceshipCurrentPosition)
   }
   document.addEventListener('keyup', spaceshipMovement)
@@ -218,14 +221,27 @@ function startGame(){
   }
 
 
-  
-    createRandomNumberForAliens()
-    createGrid()
-    createAliens(aliensArray)
-    createSpaceShip(spaceshipInitialPosition)
+ 
+  function extraLife(){
+    randomLifeNumber = Math.floor((Math.random() * 379));
+    cellsArray[randomLifeNumber].classList.add(lifeClass)
+    console.log("heart pos: ",randomLifeNumber)
+  }
+  setTimeout(function() { extraLife(); }, 5000);
+   
+ function collisionDetectionSpaceShipHeart(){
+   console.log("collision  SPACE - HEART")
+   if (spaceshipCurrentPosition==randomLifeNumber){
+     console.log("inside the iffffffffffffffffffffffffffff")
+     cellsArray[randomLifeNumber].classList.remove(lifeClass)
+     lifes=lifes+1
+     lifesDisplay.innerText=lifes
+   }
+ }
+    
 
-}
-  document.addEventListener("click", startGame)
+
+  
 
 }
 window.addEventListener('DOMContentLoaded', init)

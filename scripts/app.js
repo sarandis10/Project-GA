@@ -11,13 +11,14 @@ function init() {
   const numberCells = width * height
   const cellsArray = []
   const aliensArray = []
+  let alliensRemovedArray = []
   const alienClass = "enemy"
   const spaceshipClass = "spaceShip"
   const bulletClass = "bullet"
   const numberOfAliens = 10
   const spaceshipInitialPosition = 370
   let spaceshipCurrentPosition = spaceshipInitialPosition
-  let bulletCurrentPosition=spaceshipCurrentPosition-20
+  let bulletCurrentPosition = spaceshipCurrentPosition - 20
   const theBrief = document.querySelector(".brief")
   const audio = document.querySelector('#audio')
   console.log("is this audio?", audio)
@@ -59,7 +60,10 @@ function init() {
 
   function createAliens(x) {
     for (let i = 0; i < x.length; i++) {
-      cellsArray[x[i]].classList.add(alienClass)
+      if (!alliensRemovedArray.includes(i)){
+        cellsArray[x[i]].classList.add(alienClass)
+      }
+     
     }
   }
   createAliens(aliensArray)
@@ -85,18 +89,22 @@ function init() {
     if (key == 37 && spaceshipCurrentPosition % width !== 0) {
       spaceshipCurrentPosition -= 1
       collisionDetectionAlienShip()
+      
     }
     if (key == 39 && spaceshipCurrentPosition % width !== width - 1) {
       spaceshipCurrentPosition += 1
       collisionDetectionAlienShip()
+      
     }
     if (key == 38 && spaceshipCurrentPosition >= width) {
       spaceshipCurrentPosition -= width
       collisionDetectionAlienShip()
+      
     }
     if (key == 40 && spaceshipCurrentPosition + width <= width * height - 1) {
       spaceshipCurrentPosition += width
       collisionDetectionAlienShip()
+      
     }
     if (key == 32) {
       createBullet(spaceshipCurrentPosition - 20)
@@ -111,20 +119,23 @@ function init() {
     cellsArray[x].classList.add(bulletClass)
     playBulet()
     setInterval(() => {
+      console.log("this is the interval for the bullet")
       removeBullet(bulletCurrentPosition)
       bulletCurrentPosition = bulletCurrentPosition - 20
       cellsArray[bulletCurrentPosition].classList.add(bulletClass)
       console.log(bulletCurrentPosition)
-      collisionDetectionAlienBullet()
+      if (collisionDetectionAlienBullet()) {
+        removeBullet(bulletCurrentPosition)
+      }
       if (bulletCurrentPosition < width - 20) {
         removeBullet(bulletCurrentPosition)
       }
-    }, 500)
+    }, 2000)
   }
 
   function removeBullet(x) {
-    console.log("remove bullet")
-    console.log("bullet current pos", bulletCurrentPosition)
+    console.log("remove bullet at location ", x)
+    console.log("bullet current pos is", bulletCurrentPosition)
     cellsArray[x].classList.remove(bulletClass)
   }
 
@@ -157,20 +168,23 @@ function init() {
   }
 
   function collisionDetectionAlienBullet() {
+
     if (cellsArray[bulletCurrentPosition]
       .classList.contains(alienClass, bulletClass)) {
       score += 100
-      scoreDisplay.innerText=score
-      removeAliens(bulletCurrentPosition)
-      removeBullet(bulletCurrentPosition)
-      
+      scoreDisplay.innerText = score
+      // removeBullet(bulletCurrentPosition)
+      const aliensRemoved = aliensArray.indexOf(bulletCurrentPosition)
+      alliensRemovedArray.push(aliensRemoved)
+      console.log(alliensRemovedArray)
+
     }
   }
 
 
 
 
-// additional stuff..
+  // additional stuff..
 
   const watchScreen = document.querySelector('.time')
   let timer = 0

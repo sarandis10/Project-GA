@@ -16,19 +16,21 @@ function init() {
   const spaceshipClass = "spaceShip"
   const bulletClass = "bullet"
   const lifeClass = "extraLife"
-  const numberOfAliens = 10
+  const numberOfAliens = 1
   const spaceshipInitialPosition = 370
   let spaceshipCurrentPosition = spaceshipInitialPosition
   let bulletCurrentPosition = spaceshipCurrentPosition - 20
   const theBrief = document.querySelector(".brief")
   const audio = document.querySelector('#audio')
-  console.log("is this audio?", audio)
+  const lifeString = "well done you are +1 life"
   let randomLifeNumber
   const startButton = document.querySelector("#start")
-  console.log(startButton)
+  const pauseButton = document.querySelector("#pause")
+  console.log(pauseButton)
+  let condition=true
 
   function createRandomNumberForAliens() {
-   
+
     for (let i = 0; i <= numberOfAliens / 2; i++) {
       let randomNumber = Math.floor((Math.random() * 20));
       if (randomNumber == 0) {
@@ -50,8 +52,8 @@ function init() {
       aliensArray.push(randomNumber)
     }
   }
-  createRandomNumberForAliens()
-  
+  // createRandomNumberForAliens()
+
   function createGrid() {
     for (let i = 0; i < numberCells; i++) {
       const cell = document.createElement("div")
@@ -60,7 +62,7 @@ function init() {
       cellsArray.push(cell)
     }
   }
-  createGrid()
+  // createGrid()
 
   function createAliens(x) {
     for (let i = 0; i < x.length; i++) {
@@ -70,7 +72,7 @@ function init() {
 
     }
   }
-  createAliens(aliensArray)
+  // createAliens(aliensArray)
 
   function removeAliens(x) {
     for (let i = 0; i < x.length; i++) {
@@ -80,7 +82,7 @@ function init() {
   function createSpaceShip(x) {
     cellsArray[x].classList.add(spaceshipClass)
   }
-  createSpaceShip(spaceshipInitialPosition)
+  // createSpaceShip(spaceshipInitialPosition)
 
   function removeSpaceShip(x) {
     cellsArray[x].classList.remove(spaceshipClass)
@@ -118,7 +120,7 @@ function init() {
 
     createSpaceShip(spaceshipCurrentPosition)
   }
-  document.addEventListener('keyup', spaceshipMovement)
+  // document.addEventListener('keyup', spaceshipMovement)
 
   function createBullet(x) {
     cellsArray[x].classList.add(bulletClass)
@@ -158,7 +160,7 @@ function init() {
     createAliens(aliensArray)
     collisionDetectionAlienShip()
   }
-  setInterval(alienMovement, 10000)
+  // setInterval(alienMovement, 10000)
 
   function collisionDetectionAlienShip() {
     if (cellsArray[spaceshipCurrentPosition]
@@ -179,7 +181,7 @@ function init() {
       const aliensRemoved = aliensArray.indexOf(bulletCurrentPosition)
       alliensRemovedArray.push(aliensRemoved)
       console.log(alliensRemovedArray)
-
+      checkGameOver()
     }
   }
 
@@ -223,6 +225,11 @@ function init() {
     audio.play()
   }
 
+  function playHeart() {
+    audio.src = "/assets/Recording.m4a"
+    audio.play()
+  }
+
 
 
   function extraLife() {
@@ -230,25 +237,36 @@ function init() {
     cellsArray[randomLifeNumber].classList.add(lifeClass)
     console.log("heart pos: ", randomLifeNumber)
   }
+
   setTimeout(function () { extraLife(); }, 5000);
 
-  const lifeString = "well done you are +1 life"
+
+
   function collisionDetectionSpaceShipHeart() {
-    console.log("collision  SPACE - HEART")
-    if (spaceshipCurrentPosition == randomLifeNumber) {
+    if (spaceshipCurrentPosition == randomLifeNumber && condition===true) {
       cellsArray[randomLifeNumber].classList.remove(lifeClass)
       lifes = lifes + 1
+      playHeart()
       lifesDisplay.innerText = lifes
       theBrief.innerText = lifeString
-    }
+      condition=false  
   }
-
+    }
+ 
   function start() {
-
+    console.log("start works")
+    createRandomNumberForAliens()
+    createGrid()
+    createAliens(aliensArray)
+    createSpaceShip(spaceshipInitialPosition)
+    document.addEventListener('keyup', spaceshipMovement)
+    setInterval(alienMovement, 10000)
+    startButton.innerText = "Reset"
+    startButton.disabled = true
   }
 
   startButton.addEventListener("click", start)
-
+  pauseButton.addEventListener("click", )
 }
 window.addEventListener('DOMContentLoaded', init)
 

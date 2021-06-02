@@ -1,6 +1,4 @@
 function init() {
-
-
   const scoreDisplay = document.querySelector('.score-display')
   const lifesDisplay = document.querySelector('.lifes-display')
   let score = 0
@@ -26,9 +24,11 @@ function init() {
   const audio = document.querySelector('#audio')
   console.log("is this audio?", audio)
   let randomLifeNumber
-
+  const startButton = document.querySelector("#start")
+  console.log(startButton)
 
   function createRandomNumberForAliens() {
+   
     for (let i = 0; i <= numberOfAliens / 2; i++) {
       let randomNumber = Math.floor((Math.random() * 20));
       if (randomNumber == 0) {
@@ -51,7 +51,7 @@ function init() {
     }
   }
   createRandomNumberForAliens()
-
+  
   function createGrid() {
     for (let i = 0; i < numberCells; i++) {
       const cell = document.createElement("div")
@@ -199,10 +199,10 @@ function init() {
     watchScreen.innerHTML = getCurrentTime()
   }, 1000)
 
-  
+
   const briefString = "The Brief: \n kill all the space invaders and save the prince who has been kidnapped!"
-  theBrief.innerText=briefString
-  
+  theBrief.innerText = briefString
+
   function checkGameOver() {
     console.log("check game over")
     if (alliensRemovedArray.length == aliensArray.length || lifes == 0) {
@@ -232,20 +232,22 @@ function init() {
   }
   setTimeout(function () { extraLife(); }, 5000);
 
-  const lifeString="well done you are +1 life"
+  const lifeString = "well done you are +1 life"
   function collisionDetectionSpaceShipHeart() {
     console.log("collision  SPACE - HEART")
     if (spaceshipCurrentPosition == randomLifeNumber) {
       cellsArray[randomLifeNumber].classList.remove(lifeClass)
       lifes = lifes + 1
       lifesDisplay.innerText = lifes
-      theBrief.innerText=lifeString
+      theBrief.innerText = lifeString
     }
   }
 
+  function start() {
 
+  }
 
-
+  startButton.addEventListener("click", start)
 
 }
 window.addEventListener('DOMContentLoaded', init)

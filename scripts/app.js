@@ -135,7 +135,7 @@ function init() {
       if (bulletCurrentPosition < width - 20) {
         removeBullet(bulletCurrentPosition)
       }
-    }, 2000)
+    }, 100)
   }
 
   function removeBullet(x) {
@@ -233,7 +233,6 @@ function init() {
   setTimeout(function () { extraLife(); }, 5000);
 
   const lifeString="well done you are +1 life"
-
   function collisionDetectionSpaceShipHeart() {
     console.log("collision  SPACE - HEART")
     if (spaceshipCurrentPosition == randomLifeNumber) {

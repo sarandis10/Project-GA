@@ -2,7 +2,6 @@ function init() {
 
   const scoreDisplay = document.querySelector('.score-display')
   const lifesDisplay = document.querySelector('.lifes-display')
-  const startButton = document.querySelector(".start")
   let score = 0
   let lifes = 3
   lifesDisplay.innerText = lifes
@@ -18,7 +17,7 @@ function init() {
   const spaceshipClass = "spaceShip"
   const bulletClass = "bullet"
   const lifeClass = "extraLife"
-  const numberOfAliens = 1
+  const numberOfAliens = 10
   const spaceshipInitialPosition = 370
   let spaceshipCurrentPosition = spaceshipInitialPosition
   let bulletCurrentPosition = spaceshipCurrentPosition - 20
@@ -28,9 +27,9 @@ function init() {
   let randomLifeNumber
   theBrief.innerText = "The Brief: \n Use arrows to move and space to fire.\n  Good Luck!\n press Start to begin"
 
-  function startGame() {
+  
     function createRandomNumberForAliens() {
-      for (let i = 0; i <= Math.floor(numberOfAliens / 2); i++) {
+      for (let i = 0; i <= numberOfAliens/2; i++) {
         let randomNumber = Math.floor((Math.random() * 20));
         if (randomNumber == 0) {
           randomNumber = randomNumber + 2
@@ -40,7 +39,7 @@ function init() {
         }
         console.log("random numbers1", randomNumber)
       }
-      for (let i = 0; i <= Math.floor(numberOfAliens / 2); i++) {
+      for (let i = 0; i <= numberOfAliens / 2; i++) {
         let randomNumber = Math.floor((Math.random() * 20) + 20);
         if (randomNumber == 20) {
           randomNumber = randomNumber + 2
@@ -157,7 +156,7 @@ function init() {
       createAliens(aliensArray)
       collisionDetectionAlienShip()
     }
-    setInterval(alienMovement, 10000)
+    setInterval(alienMovement, 1000)
 
     function collisionDetectionAlienShip() {
       if (cellsArray[spaceshipCurrentPosition]
@@ -228,7 +227,7 @@ function init() {
         playHeart()
       }
     }
-  }
+  
 
 
 
@@ -247,8 +246,8 @@ function init() {
     watchScreen.innerHTML = getCurrentTime()
   }, 1000)
 
-
-  startButton.addEventListener("click", startGame)
 }
+
+
 window.addEventListener('DOMContentLoaded', init)
 

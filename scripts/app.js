@@ -199,13 +199,10 @@ function init() {
     watchScreen.innerHTML = getCurrentTime()
   }, 1000)
 
+  
   const briefString = "The Brief: \n kill all the space invaders and save the prince who has been kidnapped!"
-  theBrief.innerText = setInterval(
-    () => {
-      theBrief.innerText = briefString
-    }, 2000)
-
-
+  theBrief.innerText=briefString
+  
   function checkGameOver() {
     console.log("check game over")
     if (alliensRemovedArray.length == aliensArray.length || lifes == 0) {
@@ -235,13 +232,15 @@ function init() {
   }
   setTimeout(function () { extraLife(); }, 5000);
 
+  const lifeString="well done you are +1 life"
+
   function collisionDetectionSpaceShipHeart() {
     console.log("collision  SPACE - HEART")
     if (spaceshipCurrentPosition == randomLifeNumber) {
-      console.log("inside the iffffffffffffffffffffffffffff")
       cellsArray[randomLifeNumber].classList.remove(lifeClass)
       lifes = lifes + 1
       lifesDisplay.innerText = lifes
+      theBrief.innerText=lifeString
     }
   }
 

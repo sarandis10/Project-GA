@@ -260,13 +260,14 @@ function init() {
     createAliens(aliensArray)
     createSpaceShip(spaceshipInitialPosition)
     document.addEventListener('keyup', spaceshipMovement)
-    setInterval(alienMovement, 10000)
+    setInterval(alienMovement, 1000)
     startButton.innerText = "Reset"
     startButton.disabled = true
   }
 
   startButton.addEventListener("click", start)
-  pauseButton.addEventListener("click", )
+  // pauseButton.addEventListener("click", )
 }
+
 window.addEventListener('DOMContentLoaded', init)
 

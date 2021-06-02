@@ -1,8 +1,8 @@
 function init() {
 
-
   const scoreDisplay = document.querySelector('.score-display')
   const lifesDisplay = document.querySelector('.lifes-display')
+  const startButton=document.querySelector(".start")
   let score = 0
   let lifes = 3
   lifesDisplay.innerText = lifes
@@ -18,7 +18,7 @@ function init() {
   const spaceshipClass = "spaceShip"
   const bulletClass = "bullet"
   const lifeClass="extraLife"
-  const numberOfAliens = 10
+  const numberOfAliens = 1
   const spaceshipInitialPosition = 370
   let spaceshipCurrentPosition = spaceshipInitialPosition
   let bulletCurrentPosition = spaceshipCurrentPosition - 20
@@ -26,10 +26,11 @@ function init() {
   const audio = document.querySelector('#audio')
   console.log("is this audio?", audio)
   let randomLifeNumber
+  theBrief.innerText = "The Brief: \n Use arrows to move and space to fire.\n  Good Luck!\n press Start to begin"
 
-
+  function startGame(){
   function createRandomNumberForAliens() {
-    for (let i = 0; i <= numberOfAliens / 2; i++) {
+    for (let i = 0; i <= Math.floor(numberOfAliens / 2); i++) {
       let randomNumber = Math.floor((Math.random() * 20));
       if (randomNumber == 0) {
         randomNumber = randomNumber + 2
@@ -37,9 +38,9 @@ function init() {
       if (randomNumber == 19) {
         randomNumber = randomNumber - 2
       }
-      aliensArray.push(randomNumber)
+      console.log("random numbers1",randomNumber)
     }
-    for (let i = 0; i <= numberOfAliens / 2; i++) {
+    for (let i = 0; i <= Math.floor(numberOfAliens / 2); i++) {
       let randomNumber = Math.floor((Math.random() * 20) + 20);
       if (randomNumber == 20) {
         randomNumber = randomNumber + 2
@@ -115,7 +116,6 @@ function init() {
       bulletCurrentPosition = spaceshipCurrentPosition - 20
     }
     console.log(spaceshipCurrentPosition)
-    
     createSpaceShip(spaceshipCurrentPosition)
   }
   document.addEventListener('keyup', spaceshipMovement)
@@ -125,6 +125,7 @@ function init() {
     playBulet()
     setInterval(() => {
       console.log("this is the interval for the bullet")
+      checkGameOver()
       removeBullet(bulletCurrentPosition)
       bulletCurrentPosition = bulletCurrentPosition - 20
       cellsArray[bulletCurrentPosition].classList.add(bulletClass)
@@ -135,7 +136,7 @@ function init() {
       if (bulletCurrentPosition < width - 20) {
         removeBullet(bulletCurrentPosition)
       }
-    }, 2000)
+    }, 500)
   }
 
   function removeBullet(x) {
@@ -146,13 +147,11 @@ function init() {
 
   function alienMovement() {
     playAudio()
-
     removeAliens(aliensArray)
-
     for (let i = 0; i < aliensArray.length; i++) {
       aliensArray[i] += 20
       if (aliensArray[i] > 380 && aliensArray[i] < 399) {
-        window.alert("Game over!")
+        window.alert("Game over")
       }
     }
     createAliens(aliensArray)
@@ -165,10 +164,7 @@ function init() {
       .classList.contains(alienClass, spaceshipClass)) {
       lifes--
       lifesDisplay.innerText = lifes
-      if (lifes == 0) {
-        lifesDisplay.innerText = 0
-        window.alert("Game over!")
-      }
+      checkGameOver()
     }
   }
 
@@ -178,7 +174,6 @@ function init() {
       .classList.contains(alienClass, bulletClass)) {
       score += 100
       scoreDisplay.innerText = score
-      // removeBullet(bulletCurrentPosition)
       const aliensRemoved = aliensArray.indexOf(bulletCurrentPosition)
       alliensRemovedArray.push(aliensRemoved)
       console.log(alliensRemovedArray)
@@ -186,40 +181,44 @@ function init() {
     }
   }
 
+  function checkGameOver(){
+    console.log("check game over")
+    if (alliensRemovedArray.length ==aliensArray.length|| lifes==0){
+      window.alert("Game over!")
+    }
+  }
 
 
 
   // additional stuff..
 
-  const watchScreen = document.querySelector('.time')
-  let timer = 0
-  function getCurrentTime() {
-    timer++
-    return timer
-  }
-  watchScreen.innerHTML = getCurrentTime()
-  setInterval(() => {
-    watchScreen.innerHTML = getCurrentTime()
-  }, 1000)
-
-  const briefString = "The Brief: \n kill all the space invaders and save the prince who has been kidnapped!"
-  theBrief.innerText = setInterval(
-    () => {
-      theBrief.innerText = briefString
-    }, 2000)
+  // const watchScreen = document.querySelector('.time')
+  // let timer = 0
+  // function getCurrentTime() {
+  //   timer++
+  //   return timer
+  // }
+  // watchScreen.innerHTML = getCurrentTime()
+  // setInterval(() => {
+  //   watchScreen.innerHTML = getCurrentTime()
+  // }, 1000)
 
   function playAudio() {
     console.log("music play!")
     audio.src = "/assets/Space.mp3"
     audio.play()
   }
-
+  playAudio()
 
   function playBulet() {
     audio.src = "/assets/sniper.mp3"
     audio.play()
   }
 
+  function playHeart(){
+    audio.src = "/assets/Recording.M4A"
+    audio.play()
+  }
 
  
   function extraLife(){
@@ -232,17 +231,32 @@ function init() {
  function collisionDetectionSpaceShipHeart(){
    console.log("collision  SPACE - HEART")
    if (spaceshipCurrentPosition==randomLifeNumber){
-     console.log("inside the iffffffffffffffffffffffffffff")
      cellsArray[randomLifeNumber].classList.remove(lifeClass)
      lifes=lifes+1
      lifesDisplay.innerText=lifes
+     theBrief.innerHTML="Well Done!! +1 Life"
+     playHeart()
    }
  }
-    
+
+ 
+   
+ }
 
 
-  
+ const watchScreen = document.querySelector('.time')
+  let timer = 0
+  function getCurrentTime() {
+    timer++
+    return timer
+  }
+  watchScreen.innerHTML = getCurrentTime()
+  setInterval(() => {
+    watchScreen.innerHTML = getCurrentTime()
+  }, 1000)
 
+
+startButton.addEventListener("click",startGame )
 }
 window.addEventListener('DOMContentLoaded', init)
 

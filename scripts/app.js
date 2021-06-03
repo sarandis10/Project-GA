@@ -218,18 +218,18 @@ function init() {
 
   function playAudio() {
     console.log("music play!")
-    audio.src = "/assets/Space.mp3"
+    audio.src = "./assets/Space.mp3"
     audio.play()
   }
 
 
   function playBulet() {
-    audio.src = "/assets/sniper.mp3"
+    audio.src = "./assets/sniper.mp3"
     audio.play()
   }
 
   function playHeart() {
-    audio.src = "/assets/Recording.m4a"
+    audio.src = "./assets/Recording.m4a"
     audio.play()
   }
 

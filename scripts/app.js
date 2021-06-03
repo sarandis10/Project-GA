@@ -16,7 +16,7 @@ function init() {
   const spaceshipClass = "spaceShip"
   const bulletClass = "bullet"
   const lifeClass = "extraLife"
-  const numberOfAliens = 1
+  const numberOfAliens = 3
   const spaceshipInitialPosition = 370
   let spaceshipCurrentPosition = spaceshipInitialPosition
   let bulletCurrentPosition = spaceshipCurrentPosition - 20
@@ -130,7 +130,7 @@ function init() {
   function createBullet(x) {
     cellsArray[x].classList.add(bulletClass)
     playBulet()
-    setInterval(() => {
+    try {setInterval(() => {
       console.log("this is the interval for the bullet")
       removeBullet(bulletCurrentPosition)
       bulletCurrentPosition = bulletCurrentPosition - 20
@@ -142,13 +142,19 @@ function init() {
       if (bulletCurrentPosition < width - 20) {
         removeBullet(bulletCurrentPosition)
       }
-    }, 90)
+    }, 50)}catch(err){
+    }
   }
 
   function removeBullet(x) {
+    try{
     console.log("remove bullet at location ", x)
     console.log("bullet current pos is", bulletCurrentPosition)
     cellsArray[x].classList.remove(bulletClass)
+    }
+    catch(err){
+      
+    }
   }
 
   function alienMovement() {
@@ -210,6 +216,9 @@ function init() {
 
   function checkGameOver() {
     console.log("check game over")
+    // if(JSON.stringify(aliensArray.sort())==JSON.stringify(alliensRemovedArray.sort())){
+    //   window.alert("Game over!")
+    // }
     if (alliensRemovedArray.length == aliensArray.length || lifes == 0) {
       window.alert("Game over!")
     }
@@ -262,7 +271,7 @@ function init() {
     createAliens(aliensArray)
     createSpaceShip(spaceshipInitialPosition)
     document.addEventListener('keyup', spaceshipMovement)
-    setInterval(alienMovement, 10000)
+    setInterval(alienMovement, 500)
   }
 
   function restart() {

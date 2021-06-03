@@ -9,6 +9,7 @@ body{
     justify-content: space-around;
     align-items: center;
     background-color: rgb(58, 51, 51);
+
 }
 
 .control-screen{
@@ -39,11 +40,12 @@ body{
     linear-gradient(rgba(7, 7, 7, 0.05), rgba(121, 58, 58, 0.3)), url('../assets/space.jpg');
     background-repeat: no-repeat;
     background-size:cover;
-    border: 3px solid black;
+    border: 9px outset #FF1B1B;
+    border-radius: 40px 40px 0px 0px;
 }
 
  .grid-screen div {
-    border: 1px solid rgb(40, 44, 48);
+    border: 1px dotted rgb(40, 44, 48);
     flex-grow: 1;
     height: 5%;
     width: 4.7%;

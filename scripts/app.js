@@ -27,7 +27,12 @@ function init() {
   const startButton = document.querySelector("#start")
   const pauseButton = document.querySelector("#pause")
   console.log(pauseButton)
-  let condition=true
+  let condition = true
+  const briefString = "The Brief: \n kill all the space invaders and save the prince who has been kidnapped!"
+  theBrief.innerText = briefString
+
+
+
 
   function createRandomNumberForAliens() {
 
@@ -57,7 +62,7 @@ function init() {
   function createGrid() {
     for (let i = 0; i < numberCells; i++) {
       const cell = document.createElement("div")
-      cell.innerText = i
+      // cell.innerText = i
       theGrid.appendChild(cell)
       cellsArray.push(cell)
     }
@@ -137,7 +142,7 @@ function init() {
       if (bulletCurrentPosition < width - 20) {
         removeBullet(bulletCurrentPosition)
       }
-    }, 100)
+    }, 90)
   }
 
   function removeBullet(x) {
@@ -202,8 +207,6 @@ function init() {
   }, 1000)
 
 
-  const briefString = "The Brief: \n kill all the space invaders and save the prince who has been kidnapped!"
-  theBrief.innerText = briefString
 
   function checkGameOver() {
     console.log("check game over")
@@ -243,30 +246,32 @@ function init() {
 
 
   function collisionDetectionSpaceShipHeart() {
-    if (spaceshipCurrentPosition == randomLifeNumber && condition===true) {
+    if (spaceshipCurrentPosition == randomLifeNumber && condition === true) {
       cellsArray[randomLifeNumber].classList.remove(lifeClass)
       lifes = lifes + 1
       playHeart()
       lifesDisplay.innerText = lifes
       theBrief.innerText = lifeString
-      condition=false  
-  }
+      condition = false
     }
- 
+  }
+
   function start() {
-    console.log("start works")
     createRandomNumberForAliens()
     createGrid()
     createAliens(aliensArray)
     createSpaceShip(spaceshipInitialPosition)
     document.addEventListener('keyup', spaceshipMovement)
-    setInterval(alienMovement, 1000)
-    startButton.innerText = "Reset"
-    startButton.disabled = true
+    setInterval(alienMovement, 10000)
+  }
+
+  function restart() {
+    window.location.reload(false);
   }
 
   startButton.addEventListener("click", start)
-  // pauseButton.addEventListener("click", )
+  pauseButton.addEventListener("click", restart)
+
 }
 
 window.addEventListener('DOMContentLoaded', init)

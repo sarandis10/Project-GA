@@ -1,3 +1,4 @@
+
 function init() {
   const scoreDisplay = document.querySelector('.score-display')
   const lifesDisplay = document.querySelector('.lifes-display')

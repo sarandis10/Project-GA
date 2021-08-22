@@ -10,4 +10,14 @@ Design a grid-based game using HTML, CSS, and JavaScrip. The goal is to kill the
   2.1 Open the index.html with chrome
   2.2 run the app.js with the command node app.js
   2.3 hit the start button on the screen
+  
+# 3.0 Technologies used
+
+HTML5
+CSS3
+JavaScript
+Chrome
+VS Code
+Google Fonts
+Git & GitHub
 

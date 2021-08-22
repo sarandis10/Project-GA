@@ -34,5 +34,5 @@ In games like this you always start with the grid
       cellsArray.push(cell)
     }
   }
-  
+```
 Then you proceed with 

@@ -35,4 +35,18 @@ In games like this you always start with the grid
     }
   }
 ```
-Then you proceed with 
+Then you proceed with creating the spaceshit, enemies on the screen. 
+if you want to create manythen you should be using an array. 
+Movement detection is the next thing you should take care of. 
+Lastly you should detect the collisions.
+
+After that you can add many more features. 
+
+# 5.0 Screenshot
+
+![image](https://user-images.githubusercontent.com/43549151/130364230-d1763b15-a0e2-46c4-b6f1-4d905a792270.png)
+
+
+# 6.0 Key Learnings
+
+Making my first static JS browser game from scratch was a great learning exercise and a fun way to consolidate my learnings. In particular, I learnt a lot about DOM manipulation, different use cases for different JS array methods, and working with timers, also in hindsight I would spend a lot more time planning each stage of my build as this would help prevents some errors I had to debug.

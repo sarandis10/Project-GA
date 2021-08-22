@@ -13,8 +13,8 @@ Design a grid-based game using HTML, CSS, and JavaScrip. The goal is to kill the
   
 # 3.0 Technologies used
 
-3.1 HTML5
-3.2 CSS3
+*HTML5
+*CSS3
 3.3 JavaScript
 3.4 Chrome
 3.5 VS Code

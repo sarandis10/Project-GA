@@ -21,3 +21,16 @@ Design a grid-based game using HTML, CSS, and JavaScrip. The goal is to kill the
 *  Google Fonts
 *  Git & GitHub
 
+# 4.0 Process
+In games like this you always start with the grid
+
+
+```
+  function createGrid() {
+    for (let i = 0; i < numberCells; i++) {
+      const cell = document.createElement("div")
+      // cell.innerText = i
+      theGrid.appendChild(cell)
+      cellsArray.push(cell)
+    }
+  }

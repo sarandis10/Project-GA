@@ -36,11 +36,27 @@ In games like this you always start with the grid
   }
 ```
 Then you proceed with creating the spaceshit, enemies on the screen. 
-if you want to create manythen you should be using an array. 
+if you want to create many then you should be using an array. 
 Movement detection is the next thing you should take care of. 
 Lastly you should detect the collisions.
 
-After that you can add many more features. 
+```
+  function collisionDetectionAlienBullet() {
+
+    if (cellsArray[bulletCurrentPosition]
+      .classList.contains(alienClass, bulletClass)) {
+      score += 100
+      scoreDisplay.innerText = score
+      // removeBullet(bulletCurrentPosition)
+      const aliensRemoved = aliensArray.indexOf(bulletCurrentPosition)
+      alliensRemovedArray.push(aliensRemoved)
+      console.log(alliensRemovedArray)
+      checkGameOver()
+    }
+  }
+```
+
+After that you can add many more features like timers, levels, extra lifes
 
 # 5.0 Screenshot
 
